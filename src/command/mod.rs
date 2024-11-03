@@ -1,4 +1,3 @@
-use crate::ioutils::FileArg;
 use clap::{Parser, Subcommand};
 
 pub mod keygen;
@@ -19,8 +18,8 @@ pub enum Command {
     Keygen(keygen::KeyGen),
 
     /// open an encrypted file
-    Open(FileArg),
+    //Open(),
 
     /// seal a plaintext file
-    Seal(FileArg),
+    Seal(seal::Seal),
 }

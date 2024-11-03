@@ -10,9 +10,9 @@ fn main() -> error::Result<()> {
 
     let result = match cmd.cmd {
         //Command::Open(f) => open::open(&f),
-        //Command::Seal(f) => seal::seal(&f),
-        Command::Keygen(k) => k.gen(),
-        _ => todo!("Open, Seal"),
+        Command::Seal(sealer) => sealer.seal(),
+        Command::Keygen(keygenerator) => keygenerator.gen(),
+        _ => todo!("Open"),
     };
 
     if let Err(err) = &result {

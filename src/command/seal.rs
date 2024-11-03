@@ -1,84 +1,36 @@
-/*
-use crate::{
-    error,
-    ioutils::{FileArg, IO},
-};
+use crate::{error, ioutils::IO};
+use crate::crypto::algorithms::KemAlgorithms;
 use clap::Parser;
-use std::{fs::OpenOptions, io::Read};
 
 #[derive(Parser, Debug, Clone)]
-pub struct Encryptor {
-    /// (optional) input file, read from stdin by default
+pub struct Seal {
+    /// (optional) decrypted file, read from stdin by default
     #[arg(short, long)]
-    input_file: Option<String>,
+    decrypted_file: Option<String>,
 
-    /// (optional) output file, write to stdout by default
+    /// (optional) encrypted file, write to stdout by default
     #[arg(short, long)]
-    output_file: Option<String>,
+    encrypted_file: Option<String>,
 
-    /// (optional) additional authenticated data
+    /// public key file, read (the first) 32 byte from stdin by default
     #[arg(short, long)]
-    aad: Option<String>,
+    public_key: Option<String>,
 
-    /// (optional) key file, read (the first) 32 byte from stdin by default
-    #[arg(short, long)]
-    key: Option<String>,
+    /// Kem Algorithm to use, default Kyber512
+    #[arg(value_enum, default_value_t = KemAlgorithms::Kyber512)]
+    algorithm: KemAlgorithms,
 }
 
-pub fn seal(filearg: &FileArg) -> error::Result<()> {
-    let mut io = IO::new(&filearg.input_file, &filearg.output_file)?;
+impl Seal {
+    pub fn seal(&self) -> error::Result<()> {
+        oqs::init();
+        let mut io = IO::new(&self.decrypted_file, &self.encrypted_file, &self.public_key, &None)?;
 
-    // reads in key, if `-k` flag is passed, reads from file
-    // otherwise reads (the first) 32 bytes from stdin
-    let key = match &filearg.key {
-        None => {
-            let mut buf = Key::default();
-            std::io::stdin().read_exact(&mut buf).map_err(|err| {
-                eprintln!("{}", err);
-                error::Error::Key
-            })?;
+        let kemalg = oqs::kem::Kem::new(self.algorithm.to_oqs_enum())?;
+        let (kem_ct, b_kem_ss) = kemalg.encapsulate(&kem_pk)?;
+        // You Can make public key refrence using the api 
 
-            buf
-        }
-        Some(key) => {
-            let mut key_file = OpenOptions::new().read(true).open(key)?;
-            if key_file.metadata()?.len() != KEY_SIZE as u64 {
-                return Err(error::Error::Key);
-            }
-            let mut buf = Key::default();
-            key_file.read_exact(&mut buf)?;
 
-            buf
-        }
-    };
-
-    // iv
-    let iv = Block::new_iv();
-    io.write_block(&iv, IV_SIZE)?;
-
-    // let mut cipher = cipher::Cipher::new(key, iv, &filearg.aad);
-    let mut cipher = cipher::Cipher::new(key, iv, &None);
-
-    // stream file/stdin
-    let mut eof = false;
-    loop {
-        let mut buf = Block::default();
-        let bytes_read = io.read_block(&mut buf)?;
-        if bytes_read != BLOCK_SIZE {
-            crypto::pkcs7::pad(&mut buf, bytes_read);
-            eof = true;
-        }
-
-        // cipher block
-        cipher.encrypt_block_inplace(&mut buf, bytes_read);
-        io.write_block(&buf, BLOCK_SIZE)?;
-
-        if eof {
-            break;
-        }
+        Ok(())
     }
-
-    io.write_block(cipher.tag(), BLOCK_SIZE)?;
-    Ok(())
 }
-*/

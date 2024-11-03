@@ -14,7 +14,7 @@ pub struct KeyGen {
     secret_key: Option<String>,
 
     /// (Optional) Kem Algorithm to use, default Kyber512
-    #[arg(value_enum)]
+    #[arg(value_enum, default_value_t = KemAlgorithms::Kyber512)]
     algorithm: KemAlgorithms,
 }
 
