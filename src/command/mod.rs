@@ -1,8 +1,8 @@
 use clap::{Parser, Subcommand};
 
 pub mod keygen;
-pub mod open;
-pub mod seal;
+pub mod sign;
+pub mod verify;
 
 /// A Quantum-Safe CLI program that streams files for encryption and decryption.
 #[derive(Parser, Debug)]
@@ -14,12 +14,12 @@ pub struct Cli {
 
 #[derive(Subcommand, Clone, Debug)]
 pub enum Command {
-    /// generate a key, from pure random bytes, or from an input password.
+    /// generate a key, from pure random bytes.
     Keygen(keygen::KeyGen),
 
-    /// open an encrypted file
-    //Open(),
+    /// sign a file
+    Sign(sign::Sign),
 
-    /// seal a plaintext file
-    Seal(seal::Seal),
+    /// verify a file
+    Verify(verify::Verify),
 }

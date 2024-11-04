@@ -2,6 +2,12 @@ use clap::ValueEnum;
 use oqs::{kem, sig};
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum)]
+pub enum KeyType {
+    Kem,
+    Signature,
+}
+
+#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum)]
 pub enum KemAlgorithms {
     BikeL1,
     BikeL3,
