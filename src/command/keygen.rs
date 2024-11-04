@@ -32,23 +32,28 @@ pub struct KeyGen {
 impl KeyGen {
     pub fn gen(&self) -> error::Result<()> {
         oqs::init();
+        let public_key_buffer;
+        let secret_key_buffer;
 
         match self.key_type {
             KeyType::Kem => {
                 let kemalg = oqs::kem::Kem::new(self.algorithm_kem.to_oqs_enum())?;
                 let (public_key, secret_key) = kemalg.keypair()?;
 
-                ioutils::write_bytes(&self.public_key, public_key.into_vec().as_slice())?;
-                ioutils::write_bytes(&self.secret_key, secret_key.into_vec().as_slice())?;
+                public_key_buffer = public_key.into_vec();
+                secret_key_buffer = secret_key.into_vec();
             }
             KeyType::Signature => {
                 let sigalg = oqs::sig::Sig::new(self.algorithm_sig.to_oqs_enum())?;
                 let (public_key, secret_key) = sigalg.keypair()?;
 
-                ioutils::write_bytes(&self.public_key, public_key.into_vec().as_slice())?;
-                ioutils::write_bytes(&self.secret_key, secret_key.into_vec().as_slice())?;
+                public_key_buffer = public_key.into_vec();
+                secret_key_buffer = secret_key.into_vec();
             }
         }
+
+        ioutils::write_bytes(&self.public_key, public_key_buffer.as_slice())?;
+        ioutils::write_bytes(&self.secret_key, secret_key_buffer.as_slice())?;
 
         Ok(())
     }

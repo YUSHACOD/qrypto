@@ -4,10 +4,10 @@ pub mod keygen;
 pub mod sign;
 pub mod verify;
 
-/// A Quantum-Safe CLI program that streams files for encryption and decryption.
+/// A Quantum-Safe CLI program for KeyExchange and Signing Purposes.
 #[derive(Parser, Debug)]
 pub struct Cli {
-    /// Action to perform on the input file
+    /// Availabe functions
     #[command(subcommand)]
     pub cmd: Command,
 }
@@ -17,9 +17,9 @@ pub enum Command {
     /// generate a key, from pure random bytes.
     Keygen(keygen::KeyGen),
 
-    /// sign a file
+    /// sign a file using secret key
     Sign(sign::Sign),
 
-    /// verify a file
+    /// verify a file using public key
     Verify(verify::Verify),
 }
