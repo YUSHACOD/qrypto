@@ -12,6 +12,8 @@ fn main() -> error::Result<()> {
         Command::Keygen(keygenerator) => keygenerator.gen(),
         Command::Sign(signer) => signer.sign(),
         Command::Verify(verifier) => verifier.verify(),
+        Command::Encapsulate(encapsulator) => encapsulator.encapsulate(),
+        Command::Decapsulate(decapsulator) => decapsulator.decapsulate(),
     };
 
     if let Err(err) = &result {

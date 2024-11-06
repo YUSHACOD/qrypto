@@ -2,6 +2,8 @@ use clap::{Parser, Subcommand};
 
 pub mod keygen;
 pub mod sign;
+pub mod encapsulate;
+pub mod decapsulate;
 pub mod verify;
 
 /// A Quantum-Safe CLI program for KeyExchange and Signing Purposes.
@@ -22,4 +24,10 @@ pub enum Command {
 
     /// verify a file using public key
     Verify(verify::Verify),
+
+    /// encapsulate and create kem cipher key
+    Encapsulate(encapsulate::Encapsulate),
+
+    /// decapsulate and get kem shared secret
+    Decapsulate(decapsulate::Decapsulate),
 }
