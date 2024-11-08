@@ -1,4 +1,7 @@
-use crate::{crypto::algorithms::SigAlgorithms, error, ioutils};
+use crate::{
+    crypto::{algorithms::SigAlgorithms, file_type::FileType},
+    error, ioutils,
+};
 use clap::Parser;
 use oqs;
 
@@ -29,16 +32,26 @@ impl Verify {
         let sigalg = oqs::sig::Sig::new(self.algorithm.to_oqs_enum())?;
 
         let mut buffer: Vec<u8> = Vec::new();
-        ioutils::read_bytes(&Some(self.file.clone()), &mut buffer)?;
+        ioutils::read_file(&Some(self.file.clone()), &mut buffer)?;
 
         let mut public_key_buffer: Vec<u8> = Vec::new();
-        ioutils::read_bytes(&Some(self.public_key.clone()), &mut public_key_buffer)?;
+        ioutils::read_bytes(
+            &Some(self.public_key.clone()),
+            &mut public_key_buffer,
+            self.algorithm.to_string(),
+            FileType::SigPubKey,
+        )?;
         let public_key = sigalg
             .public_key_from_bytes(public_key_buffer.as_slice())
             .unwrap();
 
         let mut sign_buffer: Vec<u8> = Vec::new();
-        ioutils::read_bytes(&Some(self.signature_file.clone()), &mut sign_buffer)?;
+        ioutils::read_bytes(
+            &Some(self.signature_file.clone()),
+            &mut sign_buffer,
+            self.algorithm.to_string(),
+            FileType::Signature,
+        )?;
         let signature = sigalg.signature_from_bytes(sign_buffer.as_slice()).unwrap();
 
         match sigalg.verify(buffer.as_slice(), signature, public_key) {

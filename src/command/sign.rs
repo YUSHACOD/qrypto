@@ -1,4 +1,7 @@
-use crate::{crypto::algorithms::SigAlgorithms, error, ioutils};
+use crate::{
+    crypto::{algorithms::SigAlgorithms, file_type::FileType},
+    error, ioutils,
+};
 use clap::Parser;
 use oqs;
 
@@ -17,7 +20,7 @@ pub struct Sign {
     #[arg(long)]
     secret_key: String,
 
-    /// (Optional) Sig Algorithm to use, default Dilithium2 
+    /// (Optional) Sig Algorithm to use, default Dilithium2
     #[arg(value_enum, default_value_t = SigAlgorithms::Dilithium2)]
     algorithm: SigAlgorithms,
 }
@@ -29,10 +32,15 @@ impl Sign {
         let sigalg = oqs::sig::Sig::new(self.algorithm.to_oqs_enum())?;
 
         let mut buffer: Vec<u8> = Vec::new();
-        ioutils::read_bytes(&Some(self.file.clone()), &mut buffer)?;
+        ioutils::read_file(&Some(self.file.clone()), &mut buffer)?;
 
         let mut secret_key_buffer: Vec<u8> = Vec::new();
-        ioutils::read_bytes(&Some(self.secret_key.clone()), &mut secret_key_buffer)?;
+        ioutils::read_bytes(
+            &Some(self.secret_key.clone()),
+            &mut secret_key_buffer,
+            self.algorithm.to_string(),
+            FileType::SigSecKey,
+        )?;
 
         let signature =
             if let Some(secret_key) = sigalg.secret_key_from_bytes(secret_key_buffer.as_slice()) {
@@ -44,6 +52,8 @@ impl Sign {
         ioutils::write_bytes(
             &self.signature_file,
             signature.unwrap().into_vec().as_slice(),
+            self.algorithm.to_string().as_str(),
+            FileType::Signature,
         )?;
 
         Ok(())

@@ -1,4 +1,4 @@
-use crate::{crypto::algorithms::KemAlgorithms, error, ioutils};
+use crate::{crypto::{algorithms::KemAlgorithms, file_type::FileType}, error, ioutils};
 use clap::Parser;
 use oqs;
 
@@ -31,12 +31,16 @@ impl Decapsulate {
         ioutils::read_bytes(
             &Some(self.kem_secret_key.clone()),
             secret_key_buffer.as_mut(),
+            self.algorithm.to_string(),
+            FileType::KemSecKey,
         )?;
 
         let mut cipher_key_buffer: Vec<u8> = Vec::new();
         ioutils::read_bytes(
             &Some(self.kem_cipher_key.clone()),
             cipher_key_buffer.as_mut(),
+            self.algorithm.to_string(),
+            FileType::KemCipherKey
         )?;
 
         if let Some(secret_key) = kemalg.secret_key_from_bytes(secret_key_buffer.as_slice()) {
@@ -46,6 +50,8 @@ impl Decapsulate {
                 ioutils::write_bytes(
                     &Some(self.kem_cipher_key.clone()),
                     shared_secret.into_vec().as_slice(),
+                    self.algorithm.to_string().as_str(),
+                    FileType::KemSharedSec,
                 )?;
 
                 Ok(())

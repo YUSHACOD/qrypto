@@ -69,6 +69,37 @@ impl KemAlgorithms {
             Self::FrodoKem1344Shake => kem::Algorithm::FrodoKem1344Shake,
         }
     }
+
+    pub fn to_string(&self) -> String {
+        match *self {
+            Self::BikeL1 => "bike_l1".to_string(),
+            Self::BikeL3 => "bike_l3".to_string(),
+            Self::BikeL5 => "bike_l5".to_string(),
+            Self::ClassicMcEliece348864 => "classic_mc_eliece_348864".to_string(),
+            Self::ClassicMcEliece348864f => "classic_mc_eliece_348864f".to_string(),
+            Self::ClassicMcEliece460896 => "classic_mc_eliece_460896".to_string(),
+            Self::ClassicMcEliece460896f => "classic_mc_eliece_460896f".to_string(),
+            Self::ClassicMcEliece6688128 => "classic_mc_eliece_6688128".to_string(),
+            Self::ClassicMcEliece6688128f => "classic_mc_eliece_6688128f".to_string(),
+            Self::ClassicMcEliece6960119 => "classic_mc_eliece_6960119".to_string(),
+            Self::ClassicMcEliece6960119f => "classic_mc_eliece_6960119f".to_string(),
+            Self::ClassicMcEliece8192128 => "classic_mc_eliece_8192128".to_string(),
+            Self::ClassicMcEliece8192128f => "classic_mc_eliece_8192128f".to_string(),
+            Self::Hqc128 => "hqc_128".to_string(),
+            Self::Hqc192 => "hqc_192".to_string(),
+            Self::Hqc256 => "hqc_256".to_string(),
+            Self::Kyber512 => "kyber_512".to_string(),
+            Self::Kyber768 => "kyber_768".to_string(),
+            Self::Kyber1024 => "kyber_1024".to_string(),
+            Self::NtruPrimeSntrup761 => "ntru_prime_sntrup_761".to_string(),
+            Self::FrodoKem640Aes => "frodo_kem_640_aes".to_string(),
+            Self::FrodoKem640Shake => "frodo_kem_640_shake".to_string(),
+            Self::FrodoKem976Aes => "frodo_kem_976_aes".to_string(),
+            Self::FrodoKem976Shake => "frodo_kem_976_shake".to_string(),
+            Self::FrodoKem1344Aes => "frodo_kem_1344_aes".to_string(),
+            Self::FrodoKem1344Shake => "frodo_kem_1344_shake".to_string(),
+        }
+    }
 }
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum)]
@@ -113,6 +144,28 @@ impl SigAlgorithms {
             Self::SphincsShake192sSimple => sig::Algorithm::SphincsShake192sSimple,
             Self::SphincsShake256fSimple => sig::Algorithm::SphincsShake256fSimple,
             Self::SphincsShake256sSimple => sig::Algorithm::SphincsShake256sSimple,
+        }
+    }
+
+    pub fn to_string(&self) -> String {
+        match *self {
+            Self::Dilithium2 => "dilithium_2".to_string(),
+            Self::Dilithium3 => "dilithium_3".to_string(),
+            Self::Dilithium5 => "dilithium_5".to_string(),
+            Self::Falcon512 => "falcon_512".to_string(),
+            Self::Falcon1024 => "falcon_1024".to_string(),
+            Self::SphincsSha2128fSimple => "sphincs_sha2_128f_simple".to_string(),
+            Self::SphincsSha2128sSimple => "sphincs_sha2_128s_simple".to_string(),
+            Self::SphincsSha2192fSimple => "sphincs_sha2_192f_simple".to_string(),
+            Self::SphincsSha2192sSimple => "sphincs_sha2_192s_simple".to_string(),
+            Self::SphincsSha2256fSimple => "sphincs_sha2_256f_simple".to_string(),
+            Self::SphincsSha2256sSimple => "sphincs_sha2_256s_simple".to_string(),
+            Self::SphincsShake128fSimple => "sphincs_shake_128f_simple".to_string(),
+            Self::SphincsShake128sSimple => "sphincs_shake_128s_simple".to_string(),
+            Self::SphincsShake192fSimple => "sphincs_shake_192f_simple".to_string(),
+            Self::SphincsShake192sSimple => "sphincs_shake_192s_simple".to_string(),
+            Self::SphincsShake256fSimple => "sphincs_shake_256f_simple".to_string(),
+            Self::SphincsShake256sSimple => "sphincs_shake_256s_simple".to_string(),
         }
     }
 }
