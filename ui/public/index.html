@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Input Form</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<div class="container">
+		<h1>Key Generation for Kem and Signing Utility</h1>
+
+		<!-- File Upload -->
+		<div class="form-group">
+			<div class="file-upload">
+				<label for="fileInput" class="custom-file-upload">
+					[Choose File]
+				</label>
+				<input type="file" id="fileInput" />
+				<span id="fileName">(No file chosen)</span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="signatureAlgorithm">Select Signature Algorithm:</label>
+			<select id="signatureAlgorithm" class="custom-select">
+				<option value="dilithium2">[Dilithium2]</option>
+				<option value="dilithium3">[Dilithium3]</option>
+				<option value="dilithium5">[Dilithium5]</option>
+				<option value="falcon512">[Falcon512]</option>
+				<option value="falcon1024">[Falcon1024]</option>
+				<option value="sphincs-sha2128f-simple">[SphincsSha2128fSimple]</option>
+				<option value="sphincs-sha2128s-simple">[SphincsSha2128sSimple]</option>
+				<option value="sphincs-sha2192f-simple">[SphincsSha2192fSimple]</option>
+				<option value="sphincs-sha2192s-simple">[SphincsSha2192sSimple]</option>
+				<option value="sphincs-sha2256f-simple">[SphincsSha2256fSimple]</option>
+				<option value="sphincs-sha2256s-simple">[SphincsSha2256sSimple]</option>
+				<option value="sphincs-shake128f-simple">[SphincsShake128fSimple]</option>
+				<option value="sphincs-shake128s-simple">[SphincsShake128sSimple]</option>
+				<option value="sphincs-shake192f-simple">[SphincsShake192fSimple]</option>
+				<option value="sphincs-shake192s-simple">[SphincsShake192sSimple]</option>
+				<option value="sphincs-shake256f-simple">[SphincsShake256fSimple]</option>
+				<option value="sphincs-shake256s-simple">[SphincsShake256sSimple]</option>
+			</select>
+		</div>
+
+		<!-- Mode Selection -->
+		<div class="form-group">
+			<label>Encryption Mode:</label>
+			<label><input type="radio" name="encryptionMode" value="symmetric" checked><span>Symmetric</span></label>
+			<label><input type="radio" name="encryptionMode" value="asymmetric"><span> Asymmetric</span></label>
+		</div>
+
+		<div class="form-group">
+			<label>Signature Mode:</label>
+			<label><input type="radio" name="signatureMode" value="sign" checked><span> Sign</span></label>
+			<label><input type="radio" name="signatureMode" value="verify"><span> Verify</span></label>
+		</div>
+
+		<div class="form-group">
+			<label for="publicKeyName">Public Key File Name:</label>
+			<input type="text" id="publicKeyName">
+		</div>
+
+		<div class="form-group">
+			<label for="secretKeyName">Secret Key File Name:</label>
+			<input type="text" id="secretKeyName">
+		</div>
+
+		<!-- Submit Button -->
+		<div class="form-group">
+			<input id="submitButton" type="submit" value="[Submit]">
+		</div>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+
+</html>
