@@ -13,6 +13,38 @@
 		<h1>Key Generation for Kem and Signing Utility</h1>
 
 		<div class="form-group">
+			<label for="kemAlogrithm">Select KEM Algorithm:</label>
+			<select id="kemAlgorithm" class="custom-select">
+				<option value="bike-l1">[BikeL1]</option>
+				<option value="bike-l3">[BikeL3]</option>
+				<option value="bike-l5">[BikeL5]</option>
+				<option value="classic-mc-eliece348864">[ClassicMcEliece348864]</option>
+				<option value="classic-mc-eliece348864f">[ClassicMcEliece348864f]</option>
+				<option value="classic-mc-eliece460896">[ClassicMcEliece460896]</option>
+				<option value="classic-mc-eliece460896f">[ClassicMcEliece460896f]</option>
+				<option value="classic-mc-eliece6688128">[ClassicMcEliece6688128]</option>
+				<option value="classic-mc-eliece6688128f">[ClassicMcEliece6688128f]</option>
+				<option value="classic-mc-eliece6960119">[ClassicMcEliece6960119]</option>
+				<option value="classic-mc-eliece6960119f">[ClassicMcEliece6960119f]</option>
+				<option value="classic-mc-eliece8192128">[ClassicMcEliece8192128]</option>
+				<option value="classic-mc-eliece8192128f">[ClassicMcEliece8192128f]</option>
+				<option value="hqc128">[Hqc128]</option>
+				<option value="hqc192">[Hqc192]</option>
+				<option value="hqc256">[Hqc256]</option>
+				<option value="kyber512">[Kyber512]</option>
+				<option value="kyber768">[Kyber768]</option>
+				<option value="kyber1024">[Kyber1024]</option>
+				<option value="ntru-prime-sntrup761">[NtruPrimeSntrup761]</option>
+				<option value="frodo-kem640-aes">[FrodoKem640Aes]</option>
+				<option value="frodo-kem640-shake">[FrodoKem640Shake]</option>
+				<option value="frodo-kem976-aes">[FrodoKem976Aes]</option>
+				<option value="frodo-kem976-shake">[FrodoKem976Shake]</option>
+				<option value="frodo-kem1344-aes">[FrodoKem1344Aes]</option>
+				<option value="frodo-kem1344-shake">[FrodoKem1344Shake]</option>
+			</select>
+		</div>
+
+		<div class="form-group">
 			<label for="signatureAlgorithm">Select Signature Algorithm:</label>
 			<select id="signatureAlgorithm" class="custom-select">
 				<option value="dilithium2">[Dilithium2]</option>
@@ -33,6 +65,13 @@
 				<option value="sphincs-shake256f-simple">[SphincsShake256fSimple]</option>
 				<option value="sphincs-shake256s-simple">[SphincsShake256sSimple]</option>
 			</select>
+		</div>
+
+		<!-- Mode Selection -->
+		<div class="form-group">
+			<label>Mechanism: </label>
+			<label><input type="radio" name="mechanismMode" value="kem" checked><span>[KEM]</span></label>
+			<label><input type="radio" name="mechanismMode" value="signature"><span>[Signature]</span></label>
 		</div>
 
 		<div class="form-group">

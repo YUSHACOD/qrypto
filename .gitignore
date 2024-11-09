@@ -1,5 +1,4 @@
 /target
-public
-secret
-file
-sign
+/ui/node_modules
+/ui/uploads
+/ui/public/downloads

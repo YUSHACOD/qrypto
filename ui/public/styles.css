@@ -11,10 +11,12 @@
 	align-items: center;
 }
 
+
 label {
 	font-weight: bold;
 	display: block;
 	margin-bottom: 5px;
+	margin-left: 10px;
 }
 
 
@@ -365,6 +367,7 @@ input[type="submit"] {
 	font-family: inherit;
 	font-size: inherit;
 	margin: 0;
+	text-align: center;
 	padding: 0;
 	color: #009900;
 	cursor: pointer;
