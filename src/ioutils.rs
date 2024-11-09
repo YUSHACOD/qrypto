@@ -113,3 +113,25 @@ pub fn write_bytes(
         Some(fd) => fd.write(content.as_bytes()),
     }
 }
+
+pub fn write_file(
+    file: &Option<String>,
+    bytes: &[u8],
+) -> std::io::Result<usize> {
+    let mut file = if let Some(filename) = file {
+        Some(
+            OpenOptions::new()
+                .create(true)
+                .truncate(true)
+                .write(true)
+                .open(filename)?,
+        )
+    } else {
+        None
+    };
+
+    match &mut file {
+        None => std::io::stdout().write(bytes),
+        Some(fd) => fd.write(bytes),
+    }
+}
