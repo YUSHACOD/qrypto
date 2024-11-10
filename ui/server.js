@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import multer from 'multer';
 import { generateKey } from './commands/keygen.js';
+import { sign } from './commands/sign.js';
 
 const dir_name = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -20,24 +21,28 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+const uploadFields = upload.fields([
+	{ name: 'file', maxCount: 1 },
+	{ name: 'secretKeyFile', maxCount: 1 }
+]);
 
 app.use(express.static(path.join(dir_name, 'public'))); // Serving from 'public'
 app.use(express.json());
 
-app.post('/submit', upload.single('file'), (req, res) => {
+app.post('/submit', uploadFields, (req, res) => {
 	const data = req.body;
 	console.log('Received data:', data);
-	console.log('Uploaded file:', req.file); // Check the uploaded file metadata
+	console.log('Uploaded file:', req.files); // Check the uploaded file metadata
 
 	// Process the data as needed
 
 	res.json({ message: 'Data received successfully', receivedData: data, file: req.file });
 });
 
-app.post('/keygen', upload.single('file'), (req, res) => {
+app.post('/keygen', uploadFields, (req, res) => {
 	const data = req.body;
 	console.log('Received data:', data);
-	console.log('Uploaded file:', req.file); // Check the uploaded file metadata
+	console.log('Uploaded file:', req.files); // Check the uploaded file metadata
 
 	// Process the data as needed
 	const urls = generateKey(
@@ -49,11 +54,40 @@ app.post('/keygen', upload.single('file'), (req, res) => {
 	);
 
 
-	res.json({ 
+	res.json({
 		message: 'Data received successfully',
 		receivedData: data,
 		pubKeyUrl: urls.pubKeyUrl,
-		secKeyUrl: urls.secKeyUrl 
+		secKeyUrl: urls.secKeyUrl
+	});
+});
+
+app.post('/sign', uploadFields, (req, res) => {
+	const data = req.body;
+	const files = req.files;
+	console.log('Received data:', data);
+	console.log('Uploaded file:', files); // Check the uploaded file metadata
+
+	// Process the data and files as needed
+	if (!req.files || !req.files.file || !req.files.secretKeyFile) {
+		return res.status(400).json({ error: 'Missing required file uploads' });
+	}
+
+	// Process the data as needed
+	const signature_url = sign(
+		data.signatureAlgorithm,
+		files.file[0].path,
+		files.secretKeyFile[0].path,
+		data.signatureFileName
+	);
+
+	console.log(signature_url);
+
+	res.json({
+		message: 'Data received successfully',
+		receivedData: data,
+		file: req.files,
+		signatureFileUrl: signature_url
 	});
 });
 
