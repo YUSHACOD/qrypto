@@ -14,5 +14,7 @@ export const uploadFields = upload.fields([
 	{ name: 'file', maxCount: 1 },
 	{ name: 'secretKeyFile', maxCount: 1 },
 	{ name: 'publicKeyFile', maxCount: 1 },
-	{ name: 'signatureFile', maxCount: 1 }
+	{ name: 'signatureFile', maxCount: 1 },
+	{ name: 'cipherKeyFile', maxCount: 1 },
+	{ name: 'sharedSecFile', maxCount: 1 }
 ]);

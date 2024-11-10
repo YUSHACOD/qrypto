@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Qrypto: Encapsulate</title>
+	<title>Qrypto: Decapsulate</title>
 	<link rel="stylesheet" href="../styles.css">
 </head>
 
@@ -32,7 +32,7 @@
 
 		<div id="utility">
 			<div class="container">
-				<h1>Encapsulation For KEM</h1>
+				<h1>Decapsulation For KEM</h1>
 
 				<div class="form-group">
 					<label for="kemAlogrithm">Select KEM Algorithm:</label>
@@ -68,17 +68,22 @@
 
 				<div class="form-group">
 					<div class="file-upload">
-						<label for="publicKeyFile" class="custom-file-upload">
-							[Choose Public Key for Encapsulation]
+						<label for="secretKeyFile" class="custom-file-upload">
+							[Choose Secret Key for Decapsulation]
 						</label>
-						<input type="file" id="publicKeyFile" />
-						<span class="fileName" id="publicKeyFileName">(No file chosen)</span>
+						<input type="file" id="secretKeyFile" />
+						<span class="fileName" id="secretKeyFileName">(No file chosen)</span>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="cipherKeyName">Cipher Key File Name:</label>
-					<input type="text" id="cipherKeyName">
+					<div class="file-upload">
+						<label for="cipherKeyFile" class="custom-file-upload">
+							[Choose Cipher Key for Decapsulation]
+						</label>
+						<input type="file" id="cipherKeyFile" />
+						<span class="fileName" id="cipherKeyFileName">(No file chosen)</span>
+					</div>
 				</div>
 
 				<div class="form-group">
@@ -92,7 +97,6 @@
 				</div>
 
 				<div class="form-group">
-					<a id="cipherKeyUrl"></a>
 					<a id="sharedSecUrl"></a>
 				</div>
 			</div>

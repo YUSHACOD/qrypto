@@ -5,7 +5,7 @@ use oqs;
 /// Used for Key Exchange Mechanism
 #[derive(Parser, Debug, Clone)]
 pub struct Decapsulate {
-    /// your KEM secret key
+    /// KEM secret key
     #[arg(long)]
     kem_secret_key: String,
 
@@ -48,7 +48,7 @@ impl Decapsulate {
                 let shared_secret = kemalg.decapsulate(secret_key, cipher_key)?;
 
                 ioutils::write_bytes(
-                    &Some(self.kem_cipher_key.clone()),
+                    &Some(self.kem_shared_key.clone()),
                     shared_secret.into_vec().as_slice(),
                     self.algorithm.to_string().as_str(),
                     FileType::KemSharedSec,

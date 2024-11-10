@@ -4,6 +4,7 @@ import { handleKeygen } from '../controllers/keygenController.js';
 import { handleSign } from '../controllers/signController.js';
 import { handleVerify } from '../controllers/verifyController.js';
 import { handleEncapsulate } from '../controllers/encapsulateController.js';
+import { handleDecapsulate } from '../controllers/decapsulateController.js';
 
 const router = express.Router();
 
@@ -19,5 +20,6 @@ router.post('/keygen', uploadFields, handleKeygen);
 router.post('/sign', uploadFields, handleSign);
 router.post('/verify', uploadFields, handleVerify);
 router.post('/encapsulate', uploadFields, handleEncapsulate);
+router.post('/decapsulate', uploadFields, handleDecapsulate);
 
 export default router;
