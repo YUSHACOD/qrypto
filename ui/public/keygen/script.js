@@ -14,6 +14,18 @@ document.getElementById('submitButton').addEventListener('click', async () => {
 		return;
 	}
 
+	if (pubFileName == "" || pubFileName == null) {
+		alert('Please give Public Key File Name');
+		console.warn('Missing Public Key Name');
+		return;
+	}
+
+	if (secFileName == "" || secFileName == null) {
+		alert('Please give Secret Key File Name');
+		console.warn('Missing Secret Key Name');
+		return;
+	}
+
 	// Create FormData to send file and options to server
 	const formData = new FormData();
 	formData.append('signatureAlgorithm', signatureAlgorithm);

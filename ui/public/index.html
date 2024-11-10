@@ -32,103 +32,10 @@
 
 		<div id="utility">
 			<div class="container">
-				<h1>Key Generation for Kem and Signing Utility</h1>
+				<h1>A Quantum Safe Cryptograhy utility for Signing and Key
+					Exchange Mechanism with Key generation. With 26 KEM
+					algorithms and 17 Signature algorithms.</h1>
 
-
-				<!-- File Upload -->
-				<div class="form-group">
-					<div class="file-upload">
-						<label for="fileInput" class="custom-file-upload">
-							[Choose File]
-						</label>
-						<input type="file" id="fileInput" />
-						<span id="fileName">(No file chosen)</span>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="kemAlogrithm">Select KEM Algorithm:</label>
-					<select id="kemAlgorithm" class="custom-select">
-						<option value="bike-l1">[BikeL1]</option>
-						<option value="bike-l3">[BikeL3]</option>
-						<option value="bike-l5">[BikeL5]</option>
-						<option value="classic-mc-eliece348864">[ClassicMcEliece348864]</option>
-						<option value="classic-mc-eliece348864f">[ClassicMcEliece348864f]</option>
-						<option value="classic-mc-eliece460896">[ClassicMcEliece460896]</option>
-						<option value="classic-mc-eliece460896f">[ClassicMcEliece460896f]</option>
-						<option value="classic-mc-eliece6688128">[ClassicMcEliece6688128]</option>
-						<option value="classic-mc-eliece6688128f">[ClassicMcEliece6688128f]</option>
-						<option value="classic-mc-eliece6960119">[ClassicMcEliece6960119]</option>
-						<option value="classic-mc-eliece6960119f">[ClassicMcEliece6960119f]</option>
-						<option value="classic-mc-eliece8192128">[ClassicMcEliece8192128]</option>
-						<option value="classic-mc-eliece8192128f">[ClassicMcEliece8192128f]</option>
-						<option value="hqc128">[Hqc128]</option>
-						<option value="hqc192">[Hqc192]</option>
-						<option value="hqc256">[Hqc256]</option>
-						<option value="kyber512">[Kyber512]</option>
-						<option value="kyber768">[Kyber768]</option>
-						<option value="kyber1024">[Kyber1024]</option>
-						<option value="ntru-prime-sntrup761">[NtruPrimeSntrup761]</option>
-						<option value="frodo-kem640-aes">[FrodoKem640Aes]</option>
-						<option value="frodo-kem640-shake">[FrodoKem640Shake]</option>
-						<option value="frodo-kem976-aes">[FrodoKem976Aes]</option>
-						<option value="frodo-kem976-shake">[FrodoKem976Shake]</option>
-						<option value="frodo-kem1344-aes">[FrodoKem1344Aes]</option>
-						<option value="frodo-kem1344-shake">[FrodoKem1344Shake]</option>
-					</select>
-				</div>
-
-				<div class="form-group">
-					<label for="signatureAlgorithm">Select Signature Algorithm:</label>
-					<select id="signatureAlgorithm" class="custom-select">
-						<option value="dilithium2">[Dilithium2]</option>
-						<option value="dilithium3">[Dilithium3]</option>
-						<option value="dilithium5">[Dilithium5]</option>
-						<option value="falcon512">[Falcon512]</option>
-						<option value="falcon1024">[Falcon1024]</option>
-						<option value="sphincs-sha2128f-simple">[SphincsSha2128fSimple]</option>
-						<option value="sphincs-sha2128s-simple">[SphincsSha2128sSimple]</option>
-						<option value="sphincs-sha2192f-simple">[SphincsSha2192fSimple]</option>
-						<option value="sphincs-sha2192s-simple">[SphincsSha2192sSimple]</option>
-						<option value="sphincs-sha2256f-simple">[SphincsSha2256fSimple]</option>
-						<option value="sphincs-sha2256s-simple">[SphincsSha2256sSimple]</option>
-						<option value="sphincs-shake128f-simple">[SphincsShake128fSimple]</option>
-						<option value="sphincs-shake128s-simple">[SphincsShake128sSimple]</option>
-						<option value="sphincs-shake192f-simple">[SphincsShake192fSimple]</option>
-						<option value="sphincs-shake192s-simple">[SphincsShake192sSimple]</option>
-						<option value="sphincs-shake256f-simple">[SphincsShake256fSimple]</option>
-						<option value="sphincs-shake256s-simple">[SphincsShake256sSimple]</option>
-					</select>
-				</div>
-
-				<!-- Mode Selection -->
-				<div class="form-group">
-					<label>Encryption Mode:</label>
-					<label><input type="radio" name="encryptionMode" value="symmetric"
-							checked><span>Symmetric</span></label>
-					<label><input type="radio" name="encryptionMode" value="asymmetric"><span> Asymmetric</span></label>
-				</div>
-
-				<div class="form-group">
-					<label>Signature Mode:</label>
-					<label><input type="radio" name="signatureMode" value="sign" checked><span> Sign</span></label>
-					<label><input type="radio" name="signatureMode" value="verify"><span> Verify</span></label>
-				</div>
-
-				<div class="form-group">
-					<label for="publicKeyName">Public Key File Name:</label>
-					<input type="text" id="publicKeyName">
-				</div>
-
-				<div class="form-group">
-					<label for="secretKeyName">Secret Key File Name:</label>
-					<input type="text" id="secretKeyName">
-				</div>
-
-				<!-- Submit Button -->
-				<div class="form-group">
-					<input id="submitButton" type="submit" value="[Submit]">
-				</div>
 			</div>
 		</div>
 	</div>
