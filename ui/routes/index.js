@@ -2,6 +2,7 @@ import express from 'express';
 import { uploadFields } from '../middlewares/upload.js';
 import { handleKeygen } from '../controllers/keygenController.js';
 import { handleSign } from '../controllers/signController.js';
+import { handleVerify } from '../controllers/verifyController.js';
 
 const router = express.Router();
 
@@ -15,5 +16,6 @@ router.post('/submit', uploadFields, (req, res) => {
 
 router.post('/keygen', uploadFields, handleKeygen);
 router.post('/sign', uploadFields, handleSign);
+router.post('/verify', uploadFields, handleVerify);
 
 export default router;

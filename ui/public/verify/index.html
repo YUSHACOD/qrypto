@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Qrypto: Sign</title>
+	<title>Qrypto: Verify</title>
 	<link rel="stylesheet" href="../styles.css">
 </head>
 
@@ -32,13 +32,13 @@
 
 		<div id="utility">
 			<div class="container">
-				<h1>Signing Utility</h1>
+				<h1>Verification Utility</h1>
 
 				<!-- File Upload -->
 				<div class="form-group">
 					<div class="file-upload">
 						<label for="fileInput" class="custom-file-upload">
-							[Choose File for Signing]
+							[Choose File for Verification]
 						</label>
 						<input type="file" id="fileInput" />
 						<span class="fileName" id="fileName">(No file chosen)</span>
@@ -70,17 +70,22 @@
 
 				<div class="form-group">
 					<div class="file-upload">
-						<label for="secretKeyFile" class="custom-file-upload">
-							[Choose Secret Key for Signing]
+						<label for="signatureFile" class="custom-file-upload">
+							[Choose Signature File for Verification]
 						</label>
-						<input type="file" id="secretKeyFile" />
-						<span class="fileName" id="secretKeyFileName">(No file chosen)</span>
+						<input type="file" id="signatureFile" />
+						<span class="fileName" id="signatureFileName">(No file chosen)</span>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="signatureFileName">Signature File Name:</label>
-					<input type="text" id="signatureFileName">
+					<div class="file-upload">
+						<label for="publicKeyFile" class="custom-file-upload">
+							[Choose Public Key for Verification]
+						</label>
+						<input type="file" id="publicKeyFile" />
+						<span class="fileName" id="publicKeyFileName">(No file chosen)</span>
+					</div>
 				</div>
 
 				<!-- Submit Button -->
@@ -89,7 +94,7 @@
 				</div>
 
 				<div class="form-group">
-					<a id="signatureFileUrl"></a>
+					<span id="result"></span>
 				</div>
 			</div>
 		</div>

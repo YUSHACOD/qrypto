@@ -12,5 +12,7 @@ const storage = multer.diskStorage({
 export const upload = multer({ storage: storage });
 export const uploadFields = upload.fields([
 	{ name: 'file', maxCount: 1 },
-	{ name: 'secretKeyFile', maxCount: 1 }
+	{ name: 'secretKeyFile', maxCount: 1 },
+	{ name: 'publicKeyFile', maxCount: 1 },
+	{ name: 'signatureFile', maxCount: 1 }
 ]);

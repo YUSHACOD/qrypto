@@ -413,9 +413,7 @@ input[type="file"] {
 	color: #99ff99;
 }
 
-#pubKeyFileName,
-#secretKeyFileName,
-#fileName {
+.fileName {
 	font-family: inherit;
 	color: #009900;
 }
