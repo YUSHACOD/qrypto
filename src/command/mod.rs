@@ -25,7 +25,7 @@ pub enum Command {
     /// verify a file using public key
     Verify(verify::Verify),
 
-    /// encapsulate and create kem cipher key
+    /// encapsulate and create kem cipher key, shared secret
     Encapsulate(encapsulate::Encapsulate),
 
     /// decapsulate and get kem shared secret

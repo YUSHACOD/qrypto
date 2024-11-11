@@ -5,14 +5,14 @@ use crate::{
 use clap::Parser;
 use oqs;
 
-/// If no option, rng...
+/// Sign a file
 #[derive(Parser, Debug, Clone)]
 pub struct Sign {
     /// File to Sign
     #[arg(short, long)]
     file: String,
 
-    /// (Optional) File to write signature to, default stdout
+    /// (Optional) Signature File Name, default stdout
     #[arg(short, long)]
     signature_file: Option<String>,
 
@@ -20,7 +20,7 @@ pub struct Sign {
     #[arg(long)]
     secret_key: String,
 
-    /// (Optional) Sig Algorithm to use, default Dilithium2
+    /// (Optional) Sig Algorithm to use
     #[arg(value_enum, default_value_t = SigAlgorithms::Dilithium2)]
     algorithm: SigAlgorithms,
 }

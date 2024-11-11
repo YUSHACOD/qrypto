@@ -5,9 +5,8 @@ import { spawn } from 'child_process';
  * @param {string} keyType - The type of key to generate.
  * @param {string} algorithmKEM - The KEM (Key Encapsulation Mechanism) algorithm to use.
  * @param {string} algorithmSIG - The signature algorithm to use.
- * @param {string} fileNamePub - The signature algorithm to use.
- * @param {string} fileNameSec - The signature algorithm to use.
- * @param {Array<string>} [options=[]] - Additional options for the command.
+ * @param {string} fileNamePub - The public key file name.
+ * @param {string} fileNameSec - The secret key file name.
  */
 export function generateKey(keyType, algorithmKEM, algorithmSIG, fileNamePub, fileNameSec) {
 	const pubFilePath = "./public/downloads/" + fileNamePub;

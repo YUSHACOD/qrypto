@@ -5,14 +5,14 @@ use crate::{
 use clap::Parser;
 use oqs;
 
-/// If no option, rng...
+/// Verify a File using Signature
 #[derive(Parser, Debug, Clone)]
 pub struct Verify {
     /// File to verify
     #[arg(short, long)]
     file: String,
 
-    /// (Optional) File to read signature from
+    /// (Optional) Signature File
     #[arg(short, long)]
     signature_file: String,
 
@@ -20,7 +20,7 @@ pub struct Verify {
     #[arg(long)]
     public_key: String,
 
-    /// (Optional) Sig Algorithm to use, default Dilithium2
+    /// (Optional) Sig Algorithm to use
     #[arg(value_enum, default_value_t = SigAlgorithms::Dilithium2)]
     algorithm: SigAlgorithms,
 }

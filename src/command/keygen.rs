@@ -8,14 +8,14 @@ use crate::{
 use clap::Parser;
 use oqs;
 
-/// If no option, rng...
+/// Key Generation for KEM and Signature Mechanism
 #[derive(Parser, Debug, Clone)]
 pub struct KeyGen {
-    /// (Optional) File to write out, default stdout
+    /// (Optional) Public key file name, default stdout
     #[arg(short, long)]
     public_key: Option<String>,
 
-    /// (Optional) File to write out, default stdout
+    /// (Optional) Secrete key file name, default stdout
     #[arg(short, long)]
     secret_key: Option<String>,
 
@@ -27,7 +27,7 @@ pub struct KeyGen {
     #[arg(value_enum, default_value_t = KemAlgorithms::Kyber512)]
     algorithm_kem: KemAlgorithms,
 
-    /// (Optional) Kem Algorithm to use, default Dilithium2
+    /// (Optional) Signature Algorithm to use, default Dilithium2
     #[arg(value_enum, default_value_t = SigAlgorithms::Dilithium2)]
     algorithm_sig: SigAlgorithms,
 }

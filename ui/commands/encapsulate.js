@@ -3,9 +3,9 @@ import { spawn } from 'child_process';
 /**
  * Function to create a child process that executes the 'qrypto keygen' command with given parameters.
  * @param {string} algorithm- The KEM (Key Exchange Mechanism) algorithm to use.
- * @param {string} publicKeyPath - The public Key to use.
- * @param {string} cipherKeyName - The Cipher Key Name to use.
- * @param {string} sharedSecName - The Shared Secret Name to use.
+ * @param {string} publicKeyPath - The public key to use.
+ * @param {string} cipherKeyName - The cipher key Name to use.
+ * @param {string} sharedSecName - The shared secret Name to use.
  */
 export function encapsulate(algorithm, publicKeyPath, cipherKeyName, sharedSecName) {
 	const publicKey = "./" + publicKeyPath;

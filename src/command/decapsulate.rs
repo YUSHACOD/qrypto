@@ -2,10 +2,10 @@ use crate::{crypto::{algorithms::KemAlgorithms, file_type::FileType}, error, iou
 use clap::Parser;
 use oqs;
 
-/// Used for Key Exchange Mechanism
+/// Decapsulation to get the Shared Secret for Key Exchange Mechanism
 #[derive(Parser, Debug, Clone)]
 pub struct Decapsulate {
-    /// KEM secret key
+    /// KEM secret key file
     #[arg(long)]
     kem_secret_key: String,
 
@@ -13,11 +13,11 @@ pub struct Decapsulate {
     #[arg(long)]
     kem_cipher_key: String,
 
-    /// File for KEM shared secret
+    /// File name for KEM shared secret
     #[arg(long)]
     kem_shared_key: String,
 
-    /// (Optional) Kem Algorithm to use, default Kyber512
+    /// (Optional) Kem Algorithm to use
     #[arg(value_enum, default_value_t = KemAlgorithms::Kyber512)]
     algorithm: KemAlgorithms,
 }

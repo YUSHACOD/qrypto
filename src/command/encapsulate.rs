@@ -5,22 +5,22 @@ use crate::{
 use clap::Parser;
 use oqs;
 
-/// Used for Key Exchange Mechanism
+/// Encapsulation to create Ciphery Key and Shared Secret for Key Exchange Mechanism
 #[derive(Parser, Debug, Clone)]
 pub struct Encapsulate {
-    /// KEM public key
+    /// KEM public key file
     #[arg(long)]
     kem_pub_key: String,
 
-    /// KEM cipher key file
+    /// KEM cipher key file name
     #[arg(long)]
     kem_cipher_key: String,
 
-    /// File for KEM shared secret
+    /// KEM shared secret file name
     #[arg(long)]
     kem_shared_key: String,
 
-    /// (Optional) Kem Algorithm to use, default Kyber512
+    /// (Optional) Kem Algorithm to use
     #[arg(value_enum, default_value_t = KemAlgorithms::Kyber512)]
     algorithm: KemAlgorithms,
 }

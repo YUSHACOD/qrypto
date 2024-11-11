@@ -4,8 +4,8 @@ import { spawn } from 'child_process';
  * Function to create a child process that executes the 'qrypto keygen' command with given parameters.
  * @param {string} algorithm - The signature algorithm to use.
  * @param {string} filePath - The File to sign
- * @param {string} secFilePath - The Secret Key File
- * @param {string} signatureName - The SignatureName
+ * @param {string} secFilePath - The secret key file
+ * @param {string} signatureName - The signature key file name
  */
 export function sign(algorithm, filePath, secFilePath, signatureName) {
 	const secPath = "./" + secFilePath;

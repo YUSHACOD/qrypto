@@ -6,7 +6,6 @@ import { spawn } from 'child_process';
  * @param {string} filePath - The file to verify.
  * @param {string} pubFilePath - The public key file.
  * @param {string} signatureFilePath - The signature file.
- * @returns {Promise<string>} - A promise that resolves with the result of the command.
  */
 export async function verify(algorithm, filePath, pubFilePath, signatureFilePath) {
     const file = "./" + filePath;
